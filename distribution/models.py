@@ -1,5 +1,3 @@
-from calendar import weekday
-from pyexpat import model
 from django.db import models
 from datetime import date
 
@@ -8,11 +6,13 @@ from django.contrib.auth.models import User
 AREAS = [(1,'EXATAS'), (2, 'BIOLÓGICAS'), (3, 'HUMANAS'), (4, 'ARTES'), (5, 'LETRAS')]
 PERIOD_CHOICES = [('M', 'MANHÃ'), ('T', 'TARDE'), ('N', 'NOITE')]
 
+
 class Professor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    code = models.CharField(max_length=10, unique=True, primary_key=True)
     area = models.IntegerField(choices=AREAS)
     workload = models.PositiveSmallIntegerField(default=40)
-    position = models.PositiveSmallIntegerField(null=True, blank=True)
+    position = models.PositiveSmallIntegerField(null=True, blank=True, unique=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name} - {self.user.email}"

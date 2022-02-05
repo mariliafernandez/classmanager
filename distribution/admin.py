@@ -1,4 +1,3 @@
-from ast import Sub
 from django.contrib import admin
 
 from .models import Professor, Schedule, Subject, StudentsClass, Distribution, TimeSlot
