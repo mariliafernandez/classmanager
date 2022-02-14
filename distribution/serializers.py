@@ -1,6 +1,7 @@
-from .models import Subject, Professor, Schedule, StudentsClass
+from .models import Subject, Professor, Schedule, StudentsClass, ProfessorScheduleOptions, TimeSlot
 
 from rest_framework import serializers
+
 
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +16,7 @@ class CreateProfessorSerializer(serializers.ModelSerializer):
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Schedule
         fields = '__all__'
@@ -23,6 +25,19 @@ class ScheduleSerializer(serializers.ModelSerializer):
 class StudentsClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentsClass
+        exclude = ['code']
+
+
+class InputProfessorScheduleOptionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProfessorScheduleOptions
+        fields = ['schedule']
+
+
+class TimeSlotSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = TimeSlot
         exclude = ['code']
 
 
